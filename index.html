@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Introducción a la Lógica Proposicional</title>
+  <!-- Lenis para smooth scrolling -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.44/bundled/lenis.min.js"></script>
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --accent: #0000FF; /* Cambiado a azul */
+      --muted: rgba(0,0,0,0.7);
+      --font: 'Segoe UI', Tahoma, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      /* Scroll vertical por defecto */
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+    nav {
+      position: fixed;
+      top:0; left:0; width:100%;
+      background: var(--bg);
+      padding:1rem 2rem;
+      display:flex; justify-content:center;
+      z-index:10;
+    }
+    nav a {
+      color: var(--fg);
+      margin:0 1rem;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:0.1rem;
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--accent); }
+    .container {
+      /* Layout vertical por defecto */
+      display: block;
+      width: 100%;
+    }
+    section {
+      /* Cada sección en bloque, scroll vertical */
+      width: 100%;
+      padding:6rem 2rem 4rem;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      margin-top:4rem;
+    }
+    .hero-video {
+      position:absolute; top:50%; left:50%;
+      min-width:100%; min-height:100%;
+      transform:translate(-50%,-50%);
+      object-fit:cover;
+      z-index:1;
+    }
+    .hero::after {
+      content:"";
+      position:absolute; inset:0;
+      background: var(--muted);
+      z-index:2;
+    }
+    .hero-content {
+      position:relative; z-index:3;
+      display:flex; align-items:center; justify-content:center;
+      height:100%;
+    }
+    .hero-content h1 {
+      font-size:4rem;
+      text-transform:uppercase;
+      letter-spacing:0.2rem;
+      color:var(--accent);
+      text-align:center;
+    }
+    h2 {
+      font-size:2.5rem;
+      margin-bottom:1rem;
+      border-bottom:2px solid var(--accent);
+      display:inline-block;
+      padding-bottom:0.5rem;
+      text-transform: uppercase;
+      letter-spacing:0.1rem;
+    }
+    p, li { line-height:1.6; margin-bottom:1rem; }
+    code { background:#111; padding:0.2rem .4rem; border-radius:4px; font-family:monospace; }
+    pre { background:#111; padding:1rem; border-radius:4px; overflow-x:auto; margin-bottom:1rem; }
+    ul { list-style:none; padding-left:1rem; }
+    ul li::before { content:"▹"; color: var(--accent); margin-right:0.5rem; }
+    .leyes li, .ejemplos-leyes li { margin-bottom:.5rem; }
+    .footer { text-align:center; padding:2rem 0; font-size:.8rem; color:#777; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#hero">Inicio</a>
+    <a href="#que-es">¿Qué es?</a>
+    <a href="#padres">Padres</a>
+    <a href="#sintaxis">Sintaxis</a>
+    <a href="#semantica">Semántica</a>
+    <a href="#ejemplos-leyes">Ejemplos de Leyes</a>
+    <a href="#ejercicios">Ejercicios</a>
+  </nav>
+  <div class="container">
+    <section id="hero">
+      <div class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+          <source src="video/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-content">
+          <h1>Introducción a la Lógica Proposicional</h1>
+        </div>
+      </div>
+    </section>
+    <section id="que-es">
+      <h2>¿Qué es la lógica proposicional?</h2>
+      <p>La lógica proposicional estudia proposiciones —enunciados que pueden ser verdaderos o falsos— y las operaciones que las combinan para formar expresiones más complejas.</p>
+      <p><strong>Origen e historia:</strong> Sus raíces se remontan a los filósofos griegos, especialmente Aristóteles (siglo IV a.C.), quien formuló el primer sistema de silogismo. Esta disciplina evolucionó hasta el siglo XIX con George Boole, considerado el padre de la lógica moderna, al introducir el álgebra de las proposiciones.</p>
+      <p><strong>Evolución:</strong> A lo largo del tiempo, la lógica se diversificó en filosofía, matemáticas y ciencias de la computación. En el siglo XX, Frege, Russell y Whitehead formalizaron sistemas simbólicos más robustos, consolidando la lógica proposicional como base de la lógica matemática.</p>
+    </section>
+    <section id="padres">
+      <h2>Padres de la Lógica</h2>
+      <ul>
+        <li><strong>Padre de la lógica clásica:</strong> <em>Aristóteles</em> (384–322 a.C.). Desarrolló el silogismo y estableció las primeras leyes del razonamiento deductivo.</li>
+        <li><strong>Padre de la lógica moderna:</strong> <em>George Boole</em> (1815–1864). Creó el álgebra booleana, fundamento de la lógica computacional y electrónica digital.</li>
+      </ul>
+    </section>
+    <section id="sintaxis">
+      <h2>Sintaxis</h2>
+      <p>Se construye a partir de variables (<code>p, q, r</code>) y conectivos (<code>¬</code> negación, <code>∧</code> conjunción, <code>∨</code> disyunción, <code>→</code> implicación, <code>↔</code> equivalencia).</p>
+      <pre>¬(p ∧ q) → r</pre>
+    </section>
+    <section id="semantica">
+      <h2>Semántica</h2>
+      <p>Asigna valores de verdad (<em>true/false</em>) a cada variable mediante interpretaciones, y evalúa el resultado de las expresiones.</p>
+      <pre>p | q | p ∧ q
+V | V | V
+V | F | F
+F | V | F
+F | F | F</pre>
+    </section>
+    <section id="ejemplos-leyes">
+      <h2>Ejemplos de Aplicación de Leyes</h2>
+      <ul class="ejemplos-leyes">
+        <li><code>¬(p ∧ q)</code> ≡ <code>¬p ∨ ¬q</code> (De Morgan)</li>
+        <li><code>p ∨ (p ∧ q)</code> ≡ <code>p</code> (Absorción)</li>
+        <li><code>(p → q)</code> ≡ <code>¬p ∨ q</code> (Implicación)</li>
+        <li><code>¬(¬p)</code> ≡ <code>p</code> (Doble negación)</li>
+      </ul>
+    </section>
+    <section id="ejercicios">
+      <h2>Ejercicios Propuestos</h2>
+      <ol>
+        <li>Simplifica <code>¬(p ∨ q) ∧ (p ∨ ¬q)</code> usando leyes de De Morgan y Distributividad.</li>
+        <li>Simplifica <code>(p ∧ q) ∨ (p ∧ ¬q)</code> aplicando Absorción.</li>
+        <li>Transforma <code>p → (q ∧ r)</code> en una expresión sin implicaciones.</li>
+        <li>Simplifica <code>¬(¬p ∨ (q ∧ r))</code>.</li>
+      </ol>
+    </section>
+  </div>
+  <footer class="footer">
+    <p>&copy; 2025 Lógica Proposicional</p>
+  </footer>
+  <script>
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>
